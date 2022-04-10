@@ -1,0 +1,64 @@
+<div style="margin-left: 10px; margin-right: 10px">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    a {
+      text-decoration: underline;
+      color: rgb(0, 0, 0);
+    }
+
+    h3 {
+      margin: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    summary{
+      margin-top: 7px;
+    }
+  </style>
+
+  <div style="font-family: 'Montserrat', sans-serif">
+    <h2 style="margin-top: 30px; margin-left: 10px">Collections</h2>
+
+    <ul>
+      {% for collection in @collections.data %}
+      <li>
+        <h3>{{collection.name}}</h3>
+        
+
+        <details>
+          <summary>
+            Saved Items
+          </summary>
+          <ul>
+          {% for item in collection.items %}
+          <li>
+            {% if item.image %}
+            <a href="{{item.image}}">Open Image</a>
+            {% elif item.link %}
+            <a href="{{item.link}}">{{ item.link }}</a>
+            {% else %} 
+            {{item.text}} 
+            {% endif %}
+          </li>
+          {% else %}
+          <li>No Items Saved, Save Items With Context Menu To See Them Here</li>
+          {% endfor %}
+        </ul>
+        </details>
+      </li>
+      {% else %}
+      <li>No Collections, Create A Collection With Quickbar or Save An Item To Get Started</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
